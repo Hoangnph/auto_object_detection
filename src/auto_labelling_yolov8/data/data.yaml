@@ -1,0 +1,13 @@
+path: /Users/macintoshhd/Project/computer_vision/yolo11_fineturn/example/src/auto_labelling_yolov8/data
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: car_suv
+  1: car_van
+  2: car_sedan
+  3: car_micro
+  4: car_cuv
+  5: car_hatback
+  6: car_truck
+nc: 7

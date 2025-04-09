@@ -1,0 +1,40 @@
+# LLM Configuration
+llm:
+  # Supported vehicle types for classification
+  vehicle_types:
+    - car_sedan
+    - car_suv
+    - car_sports
+    - car_luxury
+    - car_compact
+    - car_pickup
+    - car_van
+    - car_wagon
+    - car_hatchback
+    - car_convertible
+    - car_coupe
+    - car_minivan
+    - car_crossover
+    - car_muscle
+    - car_classic
+    - car_electric
+    - car_hybrid
+    - truck
+    - bus
+    - motorcycle
+
+  # Prompt templates
+  prompts:
+    classification: |
+      Please analyze this vehicle image and classify it into one of these categories:
+      {vehicle_types}
+      
+      Respond ONLY with the category and confidence score in this format:
+      category confidence_score
+      
+      Example responses:
+      car_sedan 0.95
+      car_suv 0.87
+      truck 0.92
+      
+      Your response: 

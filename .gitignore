@@ -1,0 +1,80 @@
+# Environment variables
+.env
+.env.*
+
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+models/*.pt
+output/
+raw/
+*.log
+logs/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Distribution
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*~
+
+# API Keys and Secrets
+*.pem
+*.key
+credentials.json
+token.json
+
+# Large media files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.mov
+*.avi
+*.weights
+
+# Exceptions
+!input/sample_images/*.jpg
+!input/sample_images/*.png
+!docs/images/*.png
+!docs/images/*.jpg 

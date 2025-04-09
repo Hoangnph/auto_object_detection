@@ -1,0 +1,83 @@
+# Model Configuration
+model:
+  name: "yolov8x.pt"  # or yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt
+  confidence_threshold: 0.25
+  iou_threshold: 0.45
+  device: "cpu"  # or "cuda"
+  max_detections: 300
+
+# Data Processing
+data:
+  input_size: [640, 640]  # [height, width]
+  batch_size: 16
+  num_workers: 4
+  augmentation: false
+
+# Classes Configuration
+classes:
+  use_all: false  # If true, use all COCO classes
+  selected:  # Only used if use_all is false
+    - car_sedan
+    - car_suv
+    - car_cuv
+    - car_van
+    - car_micro
+    - car_hatback
+    - car_truck
+  # example_images:  # Optional example images for each class
+  #   car_suv: "https://example.com/suv.jpg"
+  #   car_sedan: "https://example.com/sedan.jpg"
+  #   car_truck: "https://example.com/truck.jpg"
+
+# LLM Configuration
+llm:
+  api_order: ["openai", "gemini", "claude"]  # Order of API preference
+  prompt_template: |
+    You are a vehicle classification expert. Please analyze this vehicle image and classify it into one of these specific categories:
+    {classes}
+    
+    CRITICAL FORMAT REQUIREMENTS:
+    1. Respond with a JSON object containing:
+       - class_name: string (one of the categories above)
+       - confidence: float (between 0.0 and 1.0)
+    2. Format: {{"class_name": "category", "confidence": score}}
+    3. NO additional text or explanation, ONLY the JSON object
+    
+    Examples of CORRECT responses:
+    {{"class_name": "car_sedan", "confidence": 0.95}}
+    {{"class_name": "car_suv", "confidence": 0.92}}
+    {{"class_name": "car_truck", "confidence": 0.88}}
+    
+    {example_images}
+    
+    Remember: Return ONLY the JSON object with exactly these field names: class_name and confidence.
+
+# Output Configuration
+output:
+  format: "yolo"  # One of: yolo, coco, voc
+  save_images: true  # Save annotated images
+  save_crops: false  # Save cropped objects
+  include_confidence: true  # Include confidence scores in labels
+
+# Visualization
+visualization:
+  box_thickness: 2
+  text_thickness: 2
+  text_scale: 0.5
+  colors:
+    box: [0, 255, 0]  # BGR format
+    text: [0, 255, 0]  # BGR format
+    background: [0, 0, 0]  # Text background
+
+# Paths
+paths:
+  models_dir: "models"
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  output_dir: "outputs"
+
+# Logging
+logging:
+  level: "INFO"
+  save_to_file: true
+  log_file: "outputs/auto_labelling.log" 
