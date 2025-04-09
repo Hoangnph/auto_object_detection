@@ -38,7 +38,14 @@ wheels/
 .DS_Store
 
 # Project specific
+# Model files
 models/*.pt
+src/auto_labelling_yolov8/models/*.pt
+src/auto_labelling_yolov8/*.pt
+src/detect_obj/models/*.pt
+*.pt
+
+# Output and logs
 output/
 raw/
 *.log
