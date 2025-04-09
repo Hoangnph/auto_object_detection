@@ -59,7 +59,7 @@ class LLMLabeler:
             logger.warning("OpenAI API key not found in environment")
             
         # Google Gemini
-        gemini_key = os.getenv("GEMINI_API_KEY")
+        gemini_key = os.getenv("GOOGLE_API_KEY")
         if gemini_key:
             self.api_keys["gemini"] = gemini_key
             self.api_urls["gemini"] = os.getenv("GEMINI_URL", "https://generativelanguage.googleapis.com/v1")
@@ -69,10 +69,10 @@ class LLMLabeler:
             logger.warning("Google Gemini API key not found in environment")
             
         # Anthropic Claude
-        claude_key = os.getenv("CLAUDE_API_KEY")
+        claude_key = os.getenv("ANTHROPIC_API_KEYPI_KEY")
         if claude_key:
             self.api_keys["claude"] = claude_key
-            self.api_urls["claude"] = os.getenv("CLAUDE_URL", "https://api.anthropic.com/v1")
+            self.api_urls["claude"] = os.getenv("ANTHROPIC_URL", "https://api.anthropic.com/v1")
             self.available_apis.append("claude")
             logger.info("Anthropic Claude API key loaded successfully")
         else:
@@ -557,8 +557,10 @@ class LLMLabeler:
                 ]
             }
             
+            url = self.api_urls["claude"]
+            
             async with aiohttp.ClientSession() as session:
-                async with session.post(self.api_urls['claude'], 
+                async with session.post(url, 
                                       headers=headers, 
                                       json=data) as response:
                     if response.status != 200:

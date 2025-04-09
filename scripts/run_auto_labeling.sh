@@ -6,12 +6,20 @@ set -e
 # Get the absolute path of the project root directory
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+# Load environment variables
+if [ -f "$PROJECT_ROOT/.env.local" ]; then
+    export $(grep -v '^#' "$PROJECT_ROOT/.env.local" | xargs)
+else
+    echo "Error: .env.local file not found"
+    exit 1
+fi
+
 # Function to display usage
 usage() {
     echo "Usage: $0 [OPTIONS] <image_path>"
     echo "Options:"
     echo "  -h, --help        Show this help message"
-    echo "  -m, --model       Specify YOLO model path (default: models/yolov8n.pt)"
+    echo "  -m, --model       Specify YOLO model path (default: models/yolov8x.pt)"
     echo "  -o, --output      Specify output directory (default: output)"
     echo ""
     echo "Example:"
@@ -20,7 +28,7 @@ usage() {
 }
 
 # Default values
-MODEL_PATH="models/yolov8n.pt"
+MODEL_PATH="models/yolov8x.pt"
 OUTPUT_DIR="output"
 
 # Parse command line arguments

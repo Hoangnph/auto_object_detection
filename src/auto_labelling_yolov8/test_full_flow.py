@@ -26,8 +26,8 @@ def parse_arguments():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description='Run auto-labeling on an image')
     parser.add_argument('image_path', type=str, help='Path to the input image')
-    parser.add_argument('--model', type=str, default='yolov8n.pt',
-                      help='Path to YOLO model (default: yolov8n.pt)')
+    parser.add_argument('--model', type=str, default='models/yolov8x.pt',
+                      help='Path to YOLO model (default: models/yolov8x.pt)')
     parser.add_argument('--output', type=str, default='output',
                       help='Output directory (default: output)')
     return parser.parse_args()
